@@ -9,17 +9,16 @@ import {
   withStyles,
   Grid,
   SwipeableDrawer,
-  Badge,
 } from "@material-ui/core";
-import { connect } from "react-redux";
+import MenuIcon from "@material-ui/icons/Menu";
 import { useHistory } from "react-router-dom";
 
-import MenuIcon from "@material-ui/icons/Menu";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+// import logo
+import Logo from "../assets/logo3.png";
 
 const styleSheet = {
   list: {
-    width: window.innerWidth / 1.5,
+    width: 200,
   },
   padding: {
     paddingRight: 30,
@@ -50,9 +49,7 @@ function Navbar(props) {
       }
     });
   }, []);
-const cart = () => {
-  history.push("/myCart")
-}
+
   //Small Screens
   const createDrawer = () => {
     return (
@@ -68,10 +65,10 @@ const cart = () => {
                 }}
               />
               <img
-                src="https://pngimg.com/uploads/nike/nike_PNG11.png"
+                src={Logo}
                 onClick={() => history.push("/")}
-                height="30px"
-                width="100px"
+                height="80px"
+                width="80px"
                 alt=""
                 style={{ marginLeft: "30%" }}
               />
@@ -107,29 +104,30 @@ const cart = () => {
                   style={{ fontFamily: "Quicksand" }}
                 >
                   <img
-                    src="https://pngimg.com/uploads/nike/nike_PNG11.png"
+                    src={Logo}
                     onClick={() => history.push("/")}
-                    height="30px"
-                    width="100px"
+                    height="80px"
+                    width="80px"
                     alt=""
                     style={{ marginLeft: "50%" }}
                   />
                 </Typography>
               </ListItem>
-              <ListItem key={2} button divider onClick={() => history.push('/')}>
+              <ListItem
+                key={2}
+                button
+                divider
+                onClick={() => history.push("/")}
+              >
                 Home
               </ListItem>
-              <ListItem key={3} button divider onClick={() => history.push('/products')}>
-                Products
-              </ListItem>
-              <ListItem key={4} button divider>
-                <Badge
-                  color="secondary"
-                  badgeContent={props.total_products}
-                  showZero
-                >
-                  <ShoppingCartIcon onClick={cart} />
-                </Badge>
+              <ListItem
+                key={3}
+                button
+                divider
+                onClick={() => history.push("/launches")}
+              >
+                Launches
               </ListItem>
             </List>
           </div>
@@ -153,36 +151,27 @@ const cart = () => {
             color="inherit"
           >
             <img
-              src="https://pngimg.com/uploads/nike/nike_PNG11.png"
+              src={Logo}
               onClick={() => history.push("/")}
-              height="50px"
-              width="150px"
+              height="100px"
+              width="100px"
               alt=""
             />
           </Typography>
           <Typography
             className={classes.padding}
             color="inherit"
-            onClick={() => history.push('/')}
+            onClick={() => history.push("/")}
           >
             <strong>Home</strong>
           </Typography>
           <Typography
             className={classes.padding}
             color="inherit"
-            onClick={() => history.push('/products')}
+            onClick={() => history.push("/launches")}
           >
-            <strong>Products</strong>
+            <strong>Launches</strong>
           </Typography>
-            <strong>
-              <Badge
-                color="secondary"
-                badgeContent={props.total_products}
-                showZero
-              >
-                  <ShoppingCartIcon onClick={cart} />
-              </Badge>
-            </strong>
         </Toolbar>
       </AppBar>
     );
@@ -195,10 +184,4 @@ Navbar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    total_products: state.total_products,
-  };
-};
-
-export default connect(mapStateToProps)(withStyles(styleSheet)(Navbar));
+export default withStyles(styleSheet)(Navbar);

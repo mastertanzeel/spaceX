@@ -1,9 +1,14 @@
-import './App.css';
-import VerticalTabs from "./components/table"
+import "./App.css";
+// import VerticalTabs from "./components/table"
+import Navbar from "./components/Navbar";
+import Cover from "./components/Cover";
 
 function App() {
   return (
-      <VerticalTabs />
+    <div>
+      <Navbar />
+      <Cover />
+    </div>
   );
 }
 
