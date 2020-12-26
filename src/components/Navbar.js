@@ -11,7 +11,7 @@ import {
   SwipeableDrawer,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 // import logo
 import Logo from "../assets/logo3.png";
@@ -50,6 +50,8 @@ function Navbar(props) {
     });
   }, []);
 
+  const home = () => console.log(history);
+
   //Small Screens
   const createDrawer = () => {
     return (
@@ -66,7 +68,7 @@ function Navbar(props) {
               />
               <img
                 src={Logo}
-                onClick={() => history.push("/")}
+                onClick={home}
                 height="80px"
                 width="80px"
                 alt=""
@@ -103,32 +105,32 @@ function Navbar(props) {
                   className="mx-auto heading-text"
                   style={{ fontFamily: "Quicksand" }}
                 >
-                  <img
-                    src={Logo}
-                    onClick={() => history.push("/")}
-                    height="80px"
-                    width="80px"
-                    alt=""
-                    style={{ marginLeft: "50%" }}
-                  />
+                  <Link className="link" to="/">
+                    <img
+                      src={Logo}
+                      height="80px"
+                      width="80px"
+                      alt=""
+                      style={{ marginLeft: "50%" }}
+                    />
+                  </Link>
                 </Typography>
               </ListItem>
-              <ListItem
-                key={2}
-                button
-                divider
-                onClick={() => history.push("/")}
-              >
-                Home
-              </ListItem>
-              <ListItem
-                key={3}
-                button
-                divider
-                onClick={() => history.push("/launches")}
-              >
-                Launches
-              </ListItem>
+              <Link className="link" to="/">
+                <ListItem
+                  key={2}
+                  button
+                  divider
+                  onClick={() => history.push("/")}
+                >
+                  Home
+                </ListItem>
+              </Link>
+              <Link className="link" to="/launches">
+                <ListItem key={3} button divider>
+                  Launches
+                </ListItem>
+              </Link>
             </List>
           </div>
         </SwipeableDrawer>
@@ -150,28 +152,34 @@ function Navbar(props) {
             style={{ flexGrow: 1, marginLeft: "70px", fontFamily: "Quicksand" }}
             color="inherit"
           >
-            <img
-              src={Logo}
-              onClick={() => history.push("/")}
-              height="100px"
-              width="100px"
-              alt=""
-            />
+            <Link className="link" to="/">
+              <img
+                src={Logo}
+                onClick={home}
+                height="100px"
+                width="100px"
+                alt=""
+              />
+            </Link>
           </Typography>
-          <Typography
-            className={classes.padding}
-            color="inherit"
-            onClick={() => history.push("/")}
-          >
-            <strong>Home</strong>
-          </Typography>
-          <Typography
-            className={classes.padding}
-            color="inherit"
-            onClick={() => history.push("/launches")}
-          >
-            <strong>Launches</strong>
-          </Typography>
+          <Link className="link" to="/">
+            <Typography
+              className={classes.padding}
+              color="inherit"
+              onClick={home}
+            >
+              <strong>Home</strong>
+            </Typography>
+          </Link>
+          <Link className="link" to="/launches">
+            <Typography
+              className={classes.padding}
+              color="inherit"
+              onClick={() => history.push("/launches")}
+            >
+              <strong>Launches</strong>
+            </Typography>
+          </Link>
         </Toolbar>
       </AppBar>
     );
