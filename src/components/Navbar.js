@@ -23,6 +23,8 @@ const styleSheet = {
   padding: {
     paddingRight: 30,
     cursor: "pointer",
+    color: "yellow",
+    fontFamily: "Quicksand",
   },
 
   sideBarIcon: {
@@ -35,12 +37,19 @@ const styleSheet = {
 function Navbar(props) {
   const [drawerActivate, setDrawerActivate] = useState(false);
   const [drawer, setDrawer] = useState(false);
+  const [navDisplay, setNavDisplay] = useState("block");
   const history = useHistory();
   useEffect(() => {
     if (window.innerWidth <= 600) {
       setDrawerActivate(true);
     }
-
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        setNavDisplay("none");
+      } else {
+        setNavDisplay("block");
+      }
+    });
     window.addEventListener("resize", () => {
       if (window.innerWidth <= 600) {
         setDrawerActivate(true);
@@ -50,25 +59,25 @@ function Navbar(props) {
     });
   }, []);
 
-  const home = () => console.log(history);
-
   //Small Screens
   const createDrawer = () => {
     return (
       <div>
-        <AppBar style={{ backgroundColor: "#FFFFFF" }} className="heading-text">
+        <AppBar
+          style={{ backgroundColor: "transparent", display: navDisplay }}
+          className="heading-text"
+        >
           <Toolbar style={{ height: "65px" }}>
             <Grid container direction="row" alignItems="center">
               <MenuIcon
                 className={props.classes.sideBarIcon}
-                style={{ color: "navy" }}
+                style={{ color: "white" }}
                 onClick={() => {
                   setDrawer(true);
                 }}
               />
               <img
                 src={Logo}
-                onClick={home}
                 height="80px"
                 width="80px"
                 alt=""
@@ -100,7 +109,6 @@ function Navbar(props) {
             <List className={props.classes.list} style={{ color: "navy" }}>
               <ListItem key={1} button divider>
                 <Typography
-                  color="inherit"
                   variant="h6"
                   className="mx-auto heading-text"
                   style={{ fontFamily: "Quicksand" }}
@@ -143,42 +151,32 @@ function Navbar(props) {
     const { classes } = props;
     return (
       <AppBar
-        style={{ backgroundColor: "#FFFFFF", fontFamily: "Quicksand" }}
+        style={{
+          backgroundColor: "transparent",
+          fontFamily: "Quicksand",
+          color: "yellow",
+          display: navDisplay,
+        }}
         className="heading-text"
       >
-        <Toolbar style={{ height: "100px", color: "navy" }}>
+        <Toolbar style={{ height: "100px", color: "yellow" }}>
           <Typography
             variant="h4"
             style={{ flexGrow: 1, marginLeft: "70px", fontFamily: "Quicksand" }}
-            color="inherit"
           >
             <Link className="link" to="/">
-              <img
-                src={Logo}
-                onClick={home}
-                height="100px"
-                width="100px"
-                alt=""
-              />
+              <img src={Logo} height="100px" width="100px" alt="" />
             </Link>
           </Typography>
           <Link className="link" to="/">
-            <Typography
-              className={classes.padding}
-              color="inherit"
-              onClick={home}
-            >
+            <h3 className={classes.padding}>
               <strong>Home</strong>
-            </Typography>
+            </h3>
           </Link>
           <Link className="link" to="/launches">
-            <Typography
-              className={classes.padding}
-              color="inherit"
-              onClick={() => history.push("/launches")}
-            >
+            <h3 className={classes.padding}>
               <strong>Launches</strong>
-            </Typography>
+            </h3>
           </Link>
         </Toolbar>
       </AppBar>

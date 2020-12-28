@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
@@ -12,8 +12,8 @@ import Switch from "@material-ui/core/Switch";
 function App() {
   const [darkState, setDarkState] = useState(false);
   const palletType = darkState ? "dark" : "light";
-  const mainPrimaryColor = darkState ? "#FE5E00" : "#44A9ED ";
-  const mainSecondaryColor = darkState ? "#CF5A19" : "#33073C";
+  const mainPrimaryColor = darkState ? "#FCEF2D" : "#44A9ED ";
+  const mainSecondaryColor = darkState ? "#FCEF2D " : "#33073C";
 
   const darkTheme = createMuiTheme({
     palette: {
@@ -29,16 +29,24 @@ function App() {
   const handleThemeChange = () => {
     setDarkState(!darkState);
   };
+
   return (
-    <ThemeProvider theme={darkTheme}>
-      <BrowserRouter>
-        <ApolloProvider>
-          <Navbar />
-          <Route exact path="/" component={Home} />
-          <Switch checked={darkState} onChange={handleThemeChange} />
-        </ApolloProvider>
-      </BrowserRouter>
-    </ThemeProvider>
+    <div
+      style={{
+        backgroundImage:
+          "linear-gradient(to bottom right, rgb(63, 56, 56) , #FFFFFF)",
+      }}
+    >
+      <ThemeProvider theme={darkTheme}>
+        <BrowserRouter>
+          <ApolloProvider>
+            <Navbar />
+            <Route exact path="/" component={Home} />
+            <Switch checked={darkState} onChange={handleThemeChange} />
+          </ApolloProvider>
+        </BrowserRouter>
+      </ThemeProvider>
+    </div>
   );
 }
 

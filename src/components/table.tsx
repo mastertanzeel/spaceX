@@ -28,6 +28,7 @@ function TabPanel(props: any) {
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
+      // style={{marginTop: '30px'}}
     >
       {!loading ? <Box p={3}>
         <h1>{data?.mission?.mission_name}</h1>
@@ -52,17 +53,23 @@ function a11yProps(index: number) {
 }
 
 const useStyles = makeStyles((theme) => ({
+  parent: {
+    backgroundImage: "linear-gradient(to bottom right, rgb(63, 56, 56) , #FFFFFF)",
+
+  },
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
     display: "flex",
-    marginTop: '300px',
+    // flexDirection: "column",
+    // marginTop: '50px',
     fontFamily: 'bold',
     fontSize: '20px'
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
-    minWidth: window.innerWidth > 720 ? '300px' : '110px'
+    minWidth: window.innerWidth > 720 ? '300px' : '110px',
+    // marginTop: '30px'
   },
 }));
 
@@ -82,9 +89,11 @@ export default function MissionTable() {
   const handleChange = (event: any, newValue: number) => {
     setValue(newValue);
   };
- 
+
 
   return (
+    <div className={classes.parent}>
+      <h2>Missions:</h2>
     <div className={classes.root}>
       <Tabs
         orientation="vertical"
@@ -104,6 +113,7 @@ export default function MissionTable() {
         </TabPanel>;
       }) : <p></p>}
 
+    </div>
     </div>
   );
 };
