@@ -35,12 +35,12 @@ export default function Rockets() {
     return (
         <div className={classes.root}>
 
-            <Grid container justify="center" spacing={2}>
+            <Grid container justify="center" spacing={window.innerWidth > 720 ? 2 : 1}>
 
                 {!!data &&
                     data.rockets?.map((rocket) => {
                         return (
-                            <Grid item xs={10} md={6} lg={3} xl={3} sm={10}>
+                            <Grid item xs={12} md={6} lg={3} xl={3} sm={10}>
                                 <RocketCard Image={
                                     rocket?.flickr_images
                                         ? String(rocket.flickr_images[0])

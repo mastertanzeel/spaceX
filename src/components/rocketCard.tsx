@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   root: {
+    height: "480px",
   },
 });
 
@@ -32,10 +33,20 @@ export default function RocketCard(props: {
           title={props.Name}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography
+            gutterBottom
+            variant="h5"
+            style={{ textDecoration: "underline" }}
+            component="h2"
+          >
             {props.Name}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography
+            variant="body2"
+            className="desc"
+            color="textSecondary"
+            component="p"
+          >
             {props.Description}
           </Typography>
         </CardContent>
@@ -47,7 +58,7 @@ export default function RocketCard(props: {
           fullWidth
           color="primary"
         >
-          Wikipedia
+          <strong>Wikipedia</strong>
         </Button>
       </CardActions>
     </Card>
