@@ -1,7 +1,7 @@
 import BG from "../assets/cover-.jpg";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   alignItemsAndJustifyContent: {
     display: "flex",
     flexDirection: "column",
@@ -16,11 +16,14 @@ const useStyles = makeStyles(() => ({
   },
   headingStyle: {
     textAlign: "center",
-    color: "yellow",
+    color: theme.coverPageText.heading,
   },
   textStyle: {
     textAlign: "center",
-    color: "yellow",
+    color: theme.coverPageText.text,
+    fontSize: '26px',
+    marginLeft: '2%',
+    marginRight: '2%'
   },
 }));
 
@@ -29,7 +32,7 @@ export default function Cover() {
   return (
     <div className={classes.alignItemsAndJustifyContent}>
       <h1 className={classes.headingStyle}>SpaceX</h1>
-      <p className={classes.textStyle} style={{ fontSize: "24px" }}>
+      <p className={classes.textStyle} >
         SpaceX designs, manufactures and launches advanced rockets and
         spacecraft. The company was founded in 2002 to revolutionize space
         technology, with the ultimate goal of enabling people to live on other

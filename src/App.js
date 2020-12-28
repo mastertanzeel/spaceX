@@ -8,18 +8,19 @@ import { BrowserRouter, Route } from "react-router-dom";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
-import Switch from "@material-ui/core/Switch";
-
 function App() {
   const [darkState, setDarkState] = useState(false);
   const palletType = darkState ? "dark" : "light";
-  const mainPrimaryColor = darkState ? "#1A202C" : "#E5E5E5";
+  const mainPrimaryColor = darkState ? "#1f2533" : "#E5E5E5";
   const mainSecondaryColor = darkState ? "#5D30D7 " : "#8e24aa";
   const mainLinkColor = darkState ? "#5D30D7 " : "#8e24aa";
   const primaryTextColor = darkState ? "#F0ECE9" : "#000000";
   const bg = darkState ? "#000000" : "#FFFFFF";
   const secondaryTextColor = darkState ? "#E5E5E5" : "#E5E5E5";
   const hoverColor = darkState ? "#2c156b" : "#5e0b4c";
+  const coverHeading = darkState ? "#bfbfbf" : "#ffffff";
+  const coverText = darkState ? "#bfbfbf" : "#ffffff";
+  const linkColor = darkState ? "#ffffff" : "#2c156b";
 
   const darkTheme = createMuiTheme({
     palette: {
@@ -38,6 +39,13 @@ function App() {
     },
     darkButton: {
       hoverColor: hoverColor
+    },
+    coverPageText:{
+      heading: coverHeading,
+      text: coverText
+    },
+    link:{
+      color: linkColor
     }
   });
   const handleThemeChange = () => {
@@ -47,9 +55,8 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <BrowserRouter>
         <ApolloProvider>
-          <Navbar />
+          <Navbar darkState={darkState} cb={handleThemeChange} />
           <Route exact path="/" component={Home} />
-          <Switch checked={darkState} onChange={handleThemeChange} />
         </ApolloProvider>
       </BrowserRouter>
     </ThemeProvider>

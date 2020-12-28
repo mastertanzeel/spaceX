@@ -6,17 +6,18 @@ import {
   Typography,
   List,
   ListItem,
-  withStyles,
   Grid,
   SwipeableDrawer,
+  Switch,
 } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // import logo
 import Logo from "../assets/logo3.png";
 
-const styleSheet = {
+const useStyles = makeStyles((theme) => ({
   list: {
     width: 200,
   },
@@ -32,13 +33,17 @@ const styleSheet = {
     color: "white",
     cursor: "pointer",
   },
-};
-
+  link: {
+    color: theme.link.color,
+    textDecoration: 'none'
+  },
+}));
 function Navbar(props) {
+  const classes = useStyles();
   const [drawerActivate, setDrawerActivate] = useState(false);
   const [drawer, setDrawer] = useState(false);
   const [navDisplay, setNavDisplay] = useState("block");
-  const history = useHistory();
+
   useEffect(() => {
     if (window.innerWidth <= 600) {
       setDrawerActivate(true);
@@ -70,7 +75,7 @@ function Navbar(props) {
           <Toolbar style={{ height: "65px" }}>
             <Grid container direction="row" alignItems="center">
               <MenuIcon
-                className={props.classes.sideBarIcon}
+                className={classes.sideBarIcon}
                 style={{ color: "white" }}
                 onClick={() => {
                   setDrawer(true);
@@ -81,7 +86,12 @@ function Navbar(props) {
                 height="80px"
                 width="80px"
                 alt=""
-                style={{ marginLeft: "30%" }}
+                style={{ marginLeft: "30%", marginRight: "15%" }}
+              />
+              <Switch
+                checked={props.darkState}
+                color="primary"
+                onChange={props.cb}
               />
             </Grid>
           </Toolbar>
@@ -106,7 +116,7 @@ function Navbar(props) {
               setDrawer(false);
             }}
           >
-            <List className={props.classes.list} style={{ color: "navy" }}>
+            <List className={classes.list} style={{ color: "navy" }}>
               <ListItem key={1} button divider>
                 <Typography
                   variant="h6"
@@ -124,21 +134,23 @@ function Navbar(props) {
                   </Link>
                 </Typography>
               </ListItem>
-              <Link className="link" to="/">
-                <ListItem
-                  key={2}
-                  button
-                  divider
-                  onClick={() => history.push("/")}
-                >
+              <Link className={classes.link} to="/">
+                <ListItem key={2} button divider>
                   Home
                 </ListItem>
               </Link>
-              <Link className="link" to="/launches">
+              <Link className={classes.link} to="/launches">
                 <ListItem key={3} button divider>
                   Launches
                 </ListItem>
               </Link>
+              <ListItem key={4} button divider>
+              <Switch
+                checked={props.darkState}
+                color="primary"
+                onChange={props.cb}
+              />
+              </ListItem>
             </List>
           </div>
         </SwipeableDrawer>
@@ -148,7 +160,6 @@ function Navbar(props) {
 
   //Larger Screens
   const destroyDrawer = () => {
-    const { classes } = props;
     return (
       <AppBar
         style={{
@@ -190,4 +201,4 @@ Navbar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(Navbar);
+export default Navbar;
