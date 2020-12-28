@@ -8,12 +8,20 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles({
+
+const useStyles = makeStyles((theme: any) => ({
   root: {
     height: "480px",
+    backgroundColor: theme.palette.primary.main
   },
-});
+  button: {
+    "&:hover": {
+      //you want this to be the same as the backgroundColor above
+      backgroundColor: theme.darkButton.hoverColor
+  }
 
+  }
+}))
 export default function RocketCard(props: {
   Image: any;
   Name: any;
@@ -36,7 +44,6 @@ export default function RocketCard(props: {
           <Typography
             gutterBottom
             variant="h5"
-            style={{ textDecoration: "underline" }}
             component="h2"
           >
             {props.Name}
@@ -56,7 +63,9 @@ export default function RocketCard(props: {
           size="small"
           onClick={() => window.open(`${props.wikipediaLink}`)}
           fullWidth
-          color="primary"
+          color="secondary"
+          variant="contained"
+          className={classes.button}
         >
           <strong>Wikipedia</strong>
         </Button>
