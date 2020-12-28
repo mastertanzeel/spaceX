@@ -28,7 +28,7 @@ function TabPanel(props: any) {
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
-      // style={{marginTop: '30px'}}
+    // style={{marginTop: '30px'}}
     >
       {!loading ? <Box p={3}>
         <h1>{data?.mission?.mission_name}</h1>
@@ -55,21 +55,20 @@ function a11yProps(index: number) {
 const useStyles = makeStyles((theme) => ({
   parent: {
     backgroundImage: "linear-gradient(to bottom right, rgb(63, 56, 56) , #FFFFFF)",
+    display: "flex",
+    flexDirection: 'column'
+
 
   },
   root: {
     flexGrow: 1,
-    // backgroundColor: theme.palette.background.paper,
     display: "flex",
-    // flexDirection: "column",
-    // marginTop: '50px',
     fontFamily: 'bold',
     fontSize: '20px'
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
     minWidth: window.innerWidth > 720 ? '300px' : '110px',
-    // marginTop: '30px'
   },
 }));
 
@@ -93,27 +92,30 @@ export default function MissionTable() {
 
   return (
     <div className={classes.parent}>
-      <h2>Missions:</h2>
-    <div className={classes.root}>
-      <Tabs
-        orientation="vertical"
-        variant="scrollable"
-        value={value}
-        onChange={handleChange}
-        aria-label="Vertical tabs example"
-        className={classes.tabs}
-      >
-        {missionFetched === true ? data?.missions?.map?.((key: any, index: number) => {
-          return <Tab label={key.mission_name} {...a11yProps(index)} key={index} />;
-        }) : <p></p>}
-      </Tabs>
-      {missionFetched === true ? data?.missions?.map?.((key: any, index: number) => {
-        return <TabPanel value={value} index={index} key={index}>
-          {key.mission_id}
-        </TabPanel>;
-      }) : <p></p>}
+      <h2 style={{ marginLeft: '10px' }} className="h1-style">Missions:</h2>
+      <Box>
+        <div className={classes.root}>
+          <Tabs
+            orientation="vertical"
+            variant="scrollable"
+            value={value}
+            onChange={handleChange}
+            aria-label="Vertical tabs example"
+            className={classes.tabs}
+          >
+            {missionFetched === true ? data?.missions?.map?.((key: any, index: number) => {
+              return <Tab label={key.mission_name} {...a11yProps(index)} key={index} />;
+            }) : <p></p>}
+          </Tabs>
+          {missionFetched === true ? data?.missions?.map?.((key: any, index: number) => {
+            return <TabPanel value={value} index={index} key={index}>
+              {key.mission_id}
+            </TabPanel>;
+          }) : <p></p>}
+        </div>
 
-    </div>
+      </Box>
+
     </div>
   );
 };

@@ -1,4 +1,14 @@
-
+.h1-style {
+	margin: 1em 0 0.5em 0;
+	/* color: #343434; */
+	font-weight: bold;
+	font-family:  serif;   
+  text-decoration: underline;
+	font-size: 2em;
+	line-height: 42px;
+	text-transform: uppercase;
+  /* text-shadow: 0 2px rgb(246, 160, 0), 0 3px rgb(255, 230, 0); */
+}
 .App {
   text-align: center;
 }
