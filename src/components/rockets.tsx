@@ -43,7 +43,7 @@ export default function Rockets() {
     }
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} id="rockets">
 
             <h2 style={{ marginLeft: '10px' }} className={classes.heading}>Rockets:</h2>
 

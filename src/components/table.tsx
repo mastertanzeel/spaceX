@@ -148,7 +148,7 @@ export default function MissionTable() {
   };
 
   return (
-    <div className={classes.parent}>
+    <div className={classes.parent} id="missions">
       <h2 style={{ marginLeft: '10px' }} className={classes.heading}>Missions:</h2>
       <Paper elevation={3} className={classes.paper}>
         <div className={classes.root}>

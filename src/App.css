@@ -1,17 +1,15 @@
-.MuiDrawer-paper{
-  width: '50%'!important
+html{
+  scroll-behavior: smooth;
 }
 .App {
   text-align: center;
 }
 
-.desc{
- 
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-
+.desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .App-logo {
@@ -48,6 +46,20 @@
     transform: rotate(360deg);
   }
 }
-.link{
+.link {
   text-decoration: none;
+}
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+}
+
+.footerHeart {
+  position: absolute;
+  /* right: 0; */
+  bottom: 10;
+  /* left: 30; */
 }

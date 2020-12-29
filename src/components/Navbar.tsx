@@ -131,7 +131,7 @@ function Navbar(props: any) {
                   className="mx-auto heading-text"
                   style={{ fontFamily: "Quicksand" }}
                 >
-                  <a className="link">
+                  <a className="link" href="#home">
                     <img
                       src={Logo}
                       height="80px"
@@ -142,14 +142,19 @@ function Navbar(props: any) {
                   </a>
                 </Typography>
               </ListItem>
-              <a className={classes.link}>
+              <a className={classes.link} href="#home">
                 <ListItem key={2} button divider>
                   Home
                 </ListItem>
               </a>
-              <a className={classes.link}>
+              <a className={classes.link} href="#home">
                 <ListItem key={3} button divider>
-                  Launches
+                  Missions
+                </ListItem>
+              </a>
+              <a className={classes.link} href="#rockets">
+                <ListItem key={4} button divider>
+                  Rockets
                 </ListItem>
               </a>
             </List>
@@ -176,18 +181,23 @@ function Navbar(props: any) {
             variant="h4"
             style={{ flexGrow: 1, marginLeft: "70px", fontFamily: "Quicksand" }}
           >
-            <a className="link">
+            <a className="link" href="#home">
               <img src={Logo} height="100px" width="100px" alt="" />
             </a>
           </Typography>
-          <a className="link">
+          <a className="link" href="#home">
             <h3 className={classes.padding}>
               <strong>Home</strong>
             </h3>
           </a>
-          <a className="link">
+          <a className="link" href="#missions">
             <h3 className={classes.padding}>
-              <strong>Launches</strong>
+              <strong>Missions</strong>
+            </h3>
+          </a>
+          <a className="link" href="#rockets">
+            <h3 className={classes.padding}>
+              <strong>Rockets</strong>
             </h3>
           </a>
           <Switch

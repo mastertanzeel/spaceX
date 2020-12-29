@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: any) => ({
 export default function Cover() {
   const classes = useStyles();
   return (
-    <div className={classes.alignItemsAndJustifyContent}>
+    <div className={classes.alignItemsAndJustifyContent} id="home">
       <h1 className={classes.headingStyle}>SpaceX</h1>
       <p className={classes.textStyle} >
         SpaceX designs, manufactures and launches advanced rockets and
