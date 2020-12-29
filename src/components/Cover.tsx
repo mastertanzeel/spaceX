@@ -1,7 +1,7 @@
 import BG from "../assets/cover-.jpg";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: any) => ({
   alignItemsAndJustifyContent: {
     display: "flex",
     flexDirection: "column",
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   headingStyle: {
     textAlign: "center",
-    color: theme.coverPageText.heading,
+    color: theme.coverPageText.text,
   },
   textStyle: {
     textAlign: "center",

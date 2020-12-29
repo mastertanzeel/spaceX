@@ -4,12 +4,14 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 
 import ApolloProvider from "./graphql/apolloProvider";
-import { BrowserRouter, Route } from "react-router-dom";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
 function App() {
   const [darkState, setDarkState] = useState(false);
+  const [open, setOpen] = useState(false);
   const palletType = darkState ? "dark" : "light";
   const mainPrimaryColor = darkState ? "#1f2533" : "#E5E5E5";
   const mainSecondaryColor = darkState ? "#5D30D7 " : "#8e24aa";
@@ -34,31 +36,42 @@ function App() {
         main: mainSecondaryColor,
         contrastText: secondaryTextColor,
         light: mainLinkColor,
-        
       },
     },
     darkButton: {
-      hoverColor: hoverColor
+      hoverColor: hoverColor,
     },
-    coverPageText:{
+    coverPageText: {
       heading: coverHeading,
-      text: coverText
+      text: coverText,
     },
-    link:{
-      color: linkColor
-    }
+    link: {
+      color: linkColor,
+    },
   });
   const handleThemeChange = () => {
     setDarkState(!darkState);
+    setOpen(true);
   };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
   return (
     <ThemeProvider theme={darkTheme}>
-      <BrowserRouter>
-        <ApolloProvider>
-          <Navbar darkState={darkState} cb={handleThemeChange} />
-          <Route exact path="/" component={Home} />
-        </ApolloProvider>
-      </BrowserRouter>
+      <ApolloProvider>
+        <Navbar darkState={darkState} cb={handleThemeChange} />
+        <Home />
+        <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+          <MuiAlert onClose={handleClose} severity="info">
+            {darkState ? "Activated dark mode" : "Activated light mode"}
+          </MuiAlert>
+        </Snackbar>
+      </ApolloProvider>
     </ThemeProvider>
   );
 }

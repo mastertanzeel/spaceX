@@ -12,12 +12,11 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Link } from "react-router-dom";
 
 // import logo
 import Logo from "../assets/logo3.png";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: any) => ({
   list: {
     width: 200,
   },
@@ -38,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none'
   },
 }));
-function Navbar(props) {
+function Navbar(props: any) {
   const classes = useStyles();
   const [drawerActivate, setDrawerActivate] = useState(false);
   const [drawer, setDrawer] = useState(false);
@@ -123,7 +122,7 @@ function Navbar(props) {
                   className="mx-auto heading-text"
                   style={{ fontFamily: "Quicksand" }}
                 >
-                  <Link className="link" to="/">
+                  <a className="link">
                     <img
                       src={Logo}
                       height="80px"
@@ -131,19 +130,19 @@ function Navbar(props) {
                       alt=""
                       style={{ marginLeft: "50%" }}
                     />
-                  </Link>
+                  </a>
                 </Typography>
               </ListItem>
-              <Link className={classes.link} to="/">
+              <a className={classes.link}>
                 <ListItem key={2} button divider>
                   Home
                 </ListItem>
-              </Link>
-              <Link className={classes.link} to="/launches">
+              </a>
+              <a className={classes.link}>
                 <ListItem key={3} button divider>
                   Launches
                 </ListItem>
-              </Link>
+              </a>
               <ListItem key={4} button divider>
               <Switch
                 checked={props.darkState}
@@ -175,20 +174,20 @@ function Navbar(props) {
             variant="h4"
             style={{ flexGrow: 1, marginLeft: "70px", fontFamily: "Quicksand" }}
           >
-            <Link className="link" to="/">
+            <a className="link">
               <img src={Logo} height="100px" width="100px" alt="" />
-            </Link>
+            </a>
           </Typography>
-          <Link className="link" to="/">
+          <a className="link">
             <h3 className={classes.padding}>
               <strong>Home</strong>
             </h3>
-          </Link>
-          <Link className="link" to="/launches">
+          </a>
+          <a className="link">
             <h3 className={classes.padding}>
               <strong>Launches</strong>
             </h3>
-          </Link>
+          </a>
         </Toolbar>
       </AppBar>
     );
