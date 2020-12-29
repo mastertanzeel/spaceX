@@ -18,12 +18,14 @@ import Logo from "../assets/logo3.png";
 
 const useStyles = makeStyles((theme: any) => ({
   list: {
-    width: 200,
+    width: window.innerWidth / 1.5,
+    height: window.innerHeight,
+    backgroundColor: theme.palette.primary.main
   },
   padding: {
     paddingRight: 30,
     cursor: "pointer",
-    color: "yellow",
+    color: theme.coverPageText.text,
     fontFamily: "Quicksand",
   },
 
@@ -36,6 +38,12 @@ const useStyles = makeStyles((theme: any) => ({
     color: theme.link.color,
     textDecoration: 'none'
   },
+  switch: {
+    color: theme.switch.color,
+    '&$checked': {
+      color: theme.switch.checkedColor,
+    }
+  }
 }));
 function Navbar(props: any) {
   const classes = useStyles();
@@ -89,8 +97,8 @@ function Navbar(props: any) {
               />
               <Switch
                 checked={props.darkState}
-                color="primary"
                 onChange={props.cb}
+                className={classes.switch}
               />
             </Grid>
           </Toolbar>
@@ -114,6 +122,7 @@ function Navbar(props: any) {
             onKeyDown={() => {
               setDrawer(false);
             }}
+            className={classes.list}
           >
             <List className={classes.list} style={{ color: "navy" }}>
               <ListItem key={1} button divider>
@@ -143,13 +152,6 @@ function Navbar(props: any) {
                   Launches
                 </ListItem>
               </a>
-              <ListItem key={4} button divider>
-              <Switch
-                checked={props.darkState}
-                color="primary"
-                onChange={props.cb}
-              />
-              </ListItem>
             </List>
           </div>
         </SwipeableDrawer>
@@ -188,6 +190,11 @@ function Navbar(props: any) {
               <strong>Launches</strong>
             </h3>
           </a>
+          <Switch
+            checked={props.darkState}
+            onChange={props.cb}
+            className={classes.switch}
+          />
         </Toolbar>
       </AppBar>
     );

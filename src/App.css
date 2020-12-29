@@ -1,4 +1,6 @@
-
+.MuiDrawer-paper{
+  width: '50%'!important
+}
 .App {
   text-align: center;
 }

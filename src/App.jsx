@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import ApolloProvider from "./graphql/apolloProvider";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { blue } from '@material-ui/core/colors';
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 
@@ -15,7 +16,7 @@ function App() {
   const palletType = darkState ? "dark" : "light";
   const mainPrimaryColor = darkState ? "#1f2533" : "#E5E5E5";
   const mainSecondaryColor = darkState ? "#5D30D7 " : "#8e24aa";
-  const mainLinkColor = darkState ? "#5D30D7 " : "#8e24aa";
+  const mainLinkColor = darkState ? "#cd00ed" : "#8e24aa";
   const primaryTextColor = darkState ? "#F0ECE9" : "#000000";
   const bg = darkState ? "#000000" : "#FFFFFF";
   const secondaryTextColor = darkState ? "#E5E5E5" : "#E5E5E5";
@@ -23,6 +24,9 @@ function App() {
   const coverHeading = darkState ? "#bfbfbf" : "#ffffff";
   const coverText = darkState ? "#bfbfbf" : "#ffffff";
   const linkColor = darkState ? "#ffffff" : "#2c156b";
+  const switchColor = darkState ? blue[500]: "#ffffff";
+  const checkedSwitchColor = darkState ? blue[100]: "#bfbfbf";
+
 
   const darkTheme = createMuiTheme({
     palette: {
@@ -48,6 +52,10 @@ function App() {
     link: {
       color: linkColor,
     },
+    switch:{
+      color: switchColor,
+      checkedColor: checkedSwitchColor
+    }
   });
   const handleThemeChange = () => {
     setDarkState(!darkState);
@@ -66,7 +74,7 @@ function App() {
       <ApolloProvider>
         <Navbar darkState={darkState} cb={handleThemeChange} />
         <Home />
-        <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+        <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
           <MuiAlert onClose={handleClose} severity="info">
             {darkState ? "Activated dark mode" : "Activated light mode"}
           </MuiAlert>

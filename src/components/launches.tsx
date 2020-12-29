@@ -16,14 +16,14 @@ const useStyles = makeStyles((theme) => ({
         paddingRight: '1%'
     },
     heading: {
-      color: theme.palette.primary.contrastText,
-      margin: '1em 0 0.5em 10px',
-      fontWeight: 'bold',
-      fontFamily: ' serif',   
-      textDecoration: 'underline',
-      fontSize: '2em',
-      lineHeight: '42px',
-      textTransform: 'uppercase',
+        color: theme.palette.primary.contrastText,
+        margin: '1em 0 0.5em 10px',
+        fontWeight: 'bold',
+        fontFamily: ' serif',
+        textDecoration: 'underline',
+        fontSize: '2em',
+        lineHeight: '42px',
+        textTransform: 'uppercase',
     }
 }))
 export default function Rockets() {
